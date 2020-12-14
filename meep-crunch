@@ -1,0 +1,87 @@
+#!/bin/bash
+# Autor: meepmaster
+# Descrição: Script Automatizado para gerar Wordlist, com Crunch, modo simplificado
+
+# INICIO
+clear
+
+# Padrão de cores para cabeçalhos
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+
+function Menu () {
+	clear
+	echo -e "*-*-*- ${GREEN}SCRIP BY MEEPMASTER${NOCOLOR} -*-*-*" 
+	echo -e "*-*-*- ${GREEN}MEEPCRUNCH${NOCOLOR} -*-*-*" 
+	echo
+	echo -e " [1] ${GREEN}CRUNCH SIMPLIFICADO${NOCOLOR} "
+	echo -e " [2] ${GREEN}INSTALACAO DE CRUNCH${NOCOLOR} "
+	echo -e " [0] ${GREEN}Sair${NOCOLOR} "
+	echo
+
+	echo -n -e " ${GREEN}>>> Digite a Opção:${NOCOLOR} "
+	read opcao
+
+	case $opcao in
+	 1) crunch_simples 
+	;;
+	 2) crunch_install 	
+	;;
+	 0) Sair 
+	;;
+	 *) "Opção Inválida." ; echo ; Menu ;;
+	esac
+}
+
+#CRUNCH SIMPLIFICADO
+function crunch_simples () {
+	read -p "Minimo de caracteres: " min
+	read -p "Maximo de caracteres: " max
+	read -p "Caracteres: " car
+	read -p "Nome da Wordlist: " nome
+
+	echo -e "Gerando a Wordlist $nome.txt..."
+	sleep 1.2
+	
+	crunch $min $max $car > /root/$nome.txt
+
+
+	echo -e "
+	 #####################################
+	|    Wordlist gerada com sucesso!!    |
+	 #####################################
+	Informacoes sobre a Wordlist:
+	Minimo de caracteres: $min           
+	Maximo de caracteres: $max               
+	Nome da Wordlist: $nome.txt                        
+	Pasta local: /GNURoot/home             
+	---------------------------------------
+	"
+}
+
+# INSTALACAO DE CRUNCH
+function crunch_install () {
+	echo
+	echo "Voce precisa ter o crunch instalado!"
+	echo 
+	read -p "Voce tem o crunch instalado? s/n: " SN
+
+	if [ "$SN" = "n" ]
+		then
+		echo -e "$Fim"
+		echo -e "Instalando o crunch..."
+		apt-get install crunch
+		crunch_simples
+	fi
+	if [ "$SN" = "s" ]
+		then
+		echo -e " "
+		crunch_simples
+	fi
+	if [ -z "$SN" ]
+	then
+		echo -e "Voce nao digitou nada!"
+		exit
+	fi
+}
