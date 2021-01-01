@@ -15,8 +15,8 @@ function Menu () {
 	echo -e "*-*-*- ${GREEN}SCRIP BY MEEPMASTER${NOCOLOR} -*-*-*" 
 	echo -e "*-*-*- ${GREEN}MEEP-CRUNCH${NOCOLOR} -*-*-*" 
 	echo
-	echo -e " [1] ${GREEN}CRUNCH SIMPLIFICADO${NOCOLOR} "
-	echo -e " [2] ${GREEN}INSTALACAO DE CRUNCH${NOCOLOR} "
+	echo -e " [1] ${GREEN}Crunch Simplificado${NOCOLOR} "
+	echo -e " [2] ${GREEN}Instalação de Crunch${NOCOLOR} "
 	echo -e " [0] ${GREEN}Sair${NOCOLOR} "
 	echo
 
